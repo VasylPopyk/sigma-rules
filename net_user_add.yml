@@ -1,0 +1,27 @@
+title: Local User Account Created via net user
+id: 5437dc25-472d-41a3-a282-7c7383a71b96
+status: experimental
+description: Detects creation of a local account using the net or net1 utility with the /add switch.
+references:
+    - https://attack.mitre.org/techniques/T1136/001/
+author: Your Name
+date: 2026/11/17
+tags:
+    - attack.persistence
+    - attack.t1136.001
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_img:
+        Image|endswith:
+            - '\net.exe'
+            - '\net1.exe'
+    selection_cmd:
+        CommandLine|contains|all:
+            - ' user '
+            - '/add'
+    condition: all of selection_*
+falsepositives:
+    - Administrators creating accounts through scripts or provisioning tools
+level: medium

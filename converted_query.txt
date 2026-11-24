@@ -1,0 +1,1 @@
+EventID:1 AND ((Image:(*\\net.exe OR *\\net1.exe)) AND (CommandLine:*\ user\ * AND CommandLine:*\/add*))
